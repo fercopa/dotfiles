@@ -1,0 +1,38 @@
+[user]
+	email = copa.fernando@gmail.com
+	username = fercopa
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[delta]
+    features = side-by-side line-numbers decorations
+    syntax-theme = Dracula
+    plus-style = syntax "#1a5276"
+    minus-style = syntax "#6c3483"
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = 196
+    line-numbers-plus-style = 81
+
+
