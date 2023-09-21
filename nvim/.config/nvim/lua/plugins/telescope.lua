@@ -1,37 +1,46 @@
 return {
-  "nvim-telescope/telescope.nvim",
-  dependencies = {
-    { "nvim-telescope/telescope-fzf-native.nvim", enabled = vim.fn.executable "make" == 1, build = "make" },
-  },
-  cmd = "Telescope",
-  opts = function()
-    local actions = require "telescope.actions"
-    local get_icon = require("astronvim.utils").get_icon
-    return {
-      defaults = {
-        git_worktrees = vim.g.git_worktrees,
-        prompt_prefix = get_icon("Selected", 1),
-        selection_caret = get_icon("Selected", 1),
-        path_display = { "truncate" },
-        sorting_strategy = "ascending",
-        layout_config = {
-          horizontal = { prompt_position = "top", preview_width = 0.55 },
-          vertical = { mirror = false },
-          width = 0.87,
-          height = 0.80,
-          preview_cutoff = 120,
-        },
-        mappings = {
-          i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
-          },
-          n = { q = actions.close },
-        },
-      },
-    }
-  end,
-  config = require "plugins.configs.telescope",
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    opts = function()
+        local actions = require("telescope.actions")
+        return {
+            defaults = {
+                file_ignore_patterns = {"tags", "node_modules", ".git", ".venv", "venv"},
+                path_display = {"truncate"},
+                mappings = {
+                    n = {
+                        ["q"] = actions.close
+                    },
+                    i = {
+                        ["<UP>"] = actions.preview_scrolling_up,
+                        ["<DOWN>"] = actions.preview_scrolling_down,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-k>"] = actions.move_selection_previous,
+                    },
+                },
+                layout_strategy = "horizontal",
+                layout_config = {
+                    horizontal = {
+                        width = 0.95,
+                        preview_width = 0.6,
+                        height = 0.99,
+                        preview_height = 0.7,
+                    },
+                }
+            }
+        }
+    end,
+    keys = function()
+        local builtin = require("telescope.builtin")
+        return {
+            {"<leader>ff", builtin.find_files, desc = "Find Files"},
+            {"<leader>fg", builtin.live_grep, desc = "Live grep"},
+            {"<leader>fb", builtin.buffers, desc = "Buffers"},
+            {"<leader>fh", builtin.help_tags, desc = "Help Tags"},
+            {"<leader>fw", function() builtin.grep_string() end, desc = "Find word under cursor"},
+            {"<leader>lD", function() builtin.diagnostics() end, desc = "Search diagnostics"},
+        }
+    end,
 }
