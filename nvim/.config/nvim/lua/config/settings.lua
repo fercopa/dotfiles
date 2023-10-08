@@ -35,5 +35,30 @@ vim.opt.path:append { "**" } -- Finding files  - Search down into subfolder
 vim.opt.wildignore:append { "*/node_modules/*" }
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
+vim.opt.cursorline = true
 
 vim.cmd 'au FileType python map <silent> ,b Oimport ipdb; ipdb.set_trace()<esc>'
+
+vim.cmd[[
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=150 }
+augroup END
+]]
+
+local signs = { Error = "󰅚", Warn = "󰀪", Hint = "󰌶", Info = "󰋽" }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config({
+    virtual_text = {
+        -- source = "always",  -- Or "if_many"
+        prefix = '●', -- Could be '■', '▎', 'x'
+    },
+    severity_sort = true,
+    float = {
+        source = "always", -- Or "if_many"
+    },
+})
