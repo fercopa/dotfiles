@@ -2,6 +2,10 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export PATH="${HOME}/nvim-linux64/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/.bin:${PATH}"
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -10,11 +14,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-#
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -75,12 +74,11 @@ eval "$(pyenv init -)"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose pyenv poetry)
+plugins=(git fzf poetry)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export EDITOR='nvim'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -105,34 +103,17 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# export VIRTUALENVWRAPPER_PYTHON=/home/fernando/.pyenv/shims/python
-# export VIRTUALENVWRAPPER_VIRTUALENV=/home/fernando/.local/bin/virtualenv
-# export WORKON_HOME=$HOME/Envs
-# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-# source $HOME/.local/bin/virtualenvwrapper.sh
-
-# alias python=python3
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-# Aliases
-alias clico='workon clicoh && sh ~/tmux-start.sh'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-export PATH=$PATH:/usr/local/go/bin
-# -e 
-alias luamake=/home/fernando/.config/lsp/lua-language-server/3rd/luamake/luamake
-export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
-# Poetry
-fpath+=~/.zfunc
-autoload -Uz compinit && compinit
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias lsa="ls -la --color=auto"
