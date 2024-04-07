@@ -17,6 +17,9 @@ return {
             "json",
             "python",
             "javascript",
+            "http",
+            "jq",
+            "java",
         },
         highlight = {
             enable = true,

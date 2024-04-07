@@ -7,7 +7,7 @@ return {
         local actions = require("telescope.actions")
         return {
             defaults = {
-                file_ignore_patterns = {"node_modules", ".git", ".venv", "venv"},
+                file_ignore_patterns = {"tags", "node_modules", ".git", ".venv", "venv"},
                 path_display = {"truncate"},
                 mappings = {
                     n = {
