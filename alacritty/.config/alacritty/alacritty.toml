@@ -1,0 +1,10 @@
+# import = ["~/.config/alacritty/dracula.toml"]
+import = [
+    "~/.config/alacritty/themes/themes/{oxocarbon}.toml"
+]
+
+[env]
+term = "xterm-256color"
+
+[window]
+opacity = 1

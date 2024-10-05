@@ -15,12 +15,13 @@ return {
             endif
         endfunction
 
-        let g:test#custom_strategies = {'echo': function('ToggleTerminalStrategy')}
-        let g:test#strategy = 'echo'
+        " let g:test#custom_strategies = {'echo': function('ToggleTerminalStrategy')}
+        let g:test#strategy = 'toggleterm'
+        " let g:test#strategy = 'echo'
         let test#python#runner = 'pytest'
         let g:test#preserve_screen = 1
         let g:test#neovim#start_normal = 1
-        let g:test#python#pytest#executable = GetExc()
+        " let g:test#python#pytest#executable = GetExc()
         let g:test#python#pytest#file_pattern = '\v(test_[^/]+|[^/]+_test|tests_[^/]+)\.py$'
         ]]
     end,
