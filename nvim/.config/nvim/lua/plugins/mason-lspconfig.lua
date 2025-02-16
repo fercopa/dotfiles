@@ -25,6 +25,7 @@ return {
         pylsp = {
           plugins = {
             pycodestyle = {enabled = false},
+            pyflakes = {enabled = false},
             -- pylint = {enabled = false},
             -- flake8 = {enabled = true},
             -- yapf = {enabled = false},
