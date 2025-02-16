@@ -8,7 +8,7 @@ return {
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     keys = {
-        {"<F3>", "<cmd>Neotree toggle=true<CR>", desc = "Neo Tree"},
+        {"<F3>", "<cmd>Neotree reveal toggle=true<CR>", desc = "Neo Tree"},
     },
     config = function()
         require("neo-tree").setup(

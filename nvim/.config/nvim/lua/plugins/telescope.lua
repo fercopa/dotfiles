@@ -7,7 +7,7 @@ return {
         local actions = require("telescope.actions")
         return {
             defaults = {
-                file_ignore_patterns = {"tags", "node_modules", ".git", ".venv", "venv"},
+                file_ignore_patterns = {"tags", "node_modules", ".venv", "venv", ".git"},
                 path_display = {"truncate"},
                 mappings = {
                     n = {
@@ -20,7 +20,8 @@ return {
                         ["<C-k>"] = actions.move_selection_previous,
                     },
                 },
-                layout_strategy = "horizontal",
+                -- layout_strategy = "horizontal",
+                layout_strategy = "vertical",
                 layout_config = {
                     horizontal = {
                         width = 0.95,
@@ -28,8 +29,19 @@ return {
                         height = 0.99,
                         preview_height = 0.7,
                     },
+                    vertical = {
+                        width = 0.95,
+                        height = 0.95,
+                        preview_width = 0.9,
+                        preview_height = 0.75,
+                    },
                 }
-            }
+            },
+            pickers = {
+                find_files = {
+                    hidden = true,
+                },
+            },
         }
     end,
     keys = function()

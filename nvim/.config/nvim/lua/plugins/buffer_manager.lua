@@ -21,5 +21,10 @@ return {
             function() require("buffer_manager.ui").nav_next() end,
             desc = "Next buffer",
         },
+        {
+            "<leader>bf",
+            function() require("telescope.builtin").buffers() end,
+            desc = "Telescope Buffer",
+        },
     }
 }

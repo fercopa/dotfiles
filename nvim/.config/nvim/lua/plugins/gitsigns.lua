@@ -1,9 +1,7 @@
 return {
     "lewis6991/gitsigns.nvim",
     opts = {
-	  max_file_length = 5000,
-    },
-    config = {
+        max_file_length = 5000,
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns
 
