@@ -8,11 +8,18 @@ return {
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     keys = {
-        {"<F3>", "<cmd>Neotree toggle=true<CR>", desc = "Neo Tree"},
+        {"<F3>", "<cmd>Neotree toggle reveal<CR>", desc = "Neo Tree"},
     },
     config = function()
         require("neo-tree").setup(
             {
+                buffers = {
+                    follow_current_file = {
+                        enabled = true, -- This will find and focus the file in the active buffer every time
+                        --              -- the current file is changed while the tree is open.
+                        leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+                    },
+                },
                 sort_by = "case_sensitive",
                 view = {
                     width = 40,
