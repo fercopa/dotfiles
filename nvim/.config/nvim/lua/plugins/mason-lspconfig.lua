@@ -11,15 +11,29 @@ return {
         "lua_ls",
         "ruff",
         "pylsp",
-        "pyright",
+        -- "pyright",
         "eslint",
         "ts_ls",
       },
       automatic_installation = true,
     }
-    require('lspconfig').ruff.setup {
-      -- cmd = {"ruff", "server", "--config", "./ruff.toml"}
-    }
+    require('lspconfig').ruff.setup({
+      init_options = {
+        settings = {
+          -- Enable formatting
+          format = {
+            enabled = true,
+          },
+        }
+      }
+    }) 
+    local venv_path = os.getenv("VIRTUAL_ENV")
+    local python_path = nil
+    if venv_path ~= nil then
+      python_path = venv_path .. "/bin/python"
+    else
+      python_path = vim.g.python3_host_prog
+    end
     require("lspconfig").pylsp.setup {
       settings = {
         pylsp = {
@@ -30,7 +44,12 @@ return {
             -- flake8 = {enabled = true},
             -- yapf = {enabled = false},
             -- isort = {enabled = true},
-            -- mypy = {enabled = true},
+            pylsp_mypy = {
+              enabled = true,
+              overrides = { "--python-executable", python_path, true },
+              report_progress = true,
+              live_mode = false,
+            },
           }
         }
       }
